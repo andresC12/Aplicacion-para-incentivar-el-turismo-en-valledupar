@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">As Tour</string>
+    <string name="title_activity_menu_administrador">MenuAdministrador</string>
+    <string name="title_activity_gestion_eventos">GestionEventos</string>
+    <string name="title_activity_formulario_evento">FormularioEvento</string>
+    <string name="title_activity_gestion_sitios">GestionSitios</string>
+    <string name="title_activity_formulario_sitio">FormularioSitio</string>
+</resources>

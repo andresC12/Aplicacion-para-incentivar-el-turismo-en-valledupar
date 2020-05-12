@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Views.MenuAdministrador"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_menu_administrador">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:onClick="GestionarEventos">
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/m2"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Gestionar eventos"
+                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="13dp"
+                android:background="#888787"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/m1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Gestionar actividades"
+                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="13dp"
+                android:background="#888787"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="GestionarSitios"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/m3"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="Gestionar sitios"
+                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,11 @@
+package com.example.proyectomovil.Models;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Evento {
+    public int id_evento;
+    public String nombre;
+    public String descripcion;
+    public List<Sitio> sitios = new ArrayList<>();
+}
