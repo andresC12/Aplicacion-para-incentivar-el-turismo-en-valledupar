@@ -5,4 +5,8 @@
     <string name="title_activity_formulario_evento">FormularioEvento</string>
     <string name="title_activity_gestion_sitios">GestionSitios</string>
     <string name="title_activity_formulario_sitio">FormularioSitio</string>
+    <string name="title_activity_lista_eventos">ListaEventos</string>
+    <string name="title_activity_view_evento">ViewEvento</string>
+    <string name="title_activity_mapa">Mapa</string>
+    <string name="title_activity_lista_sitios">ListaSitios</string>
 </resources>

@@ -35,6 +35,9 @@ public class GestionEventos extends AppCompatActivity {
         setContentView(R.layout.activity_gestion_eventos);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_eventos_admin);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         adapter = new ListaDeEventos(new EventoController().buscarTodos(this), this);

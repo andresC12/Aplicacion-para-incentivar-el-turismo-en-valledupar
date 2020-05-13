@@ -29,18 +29,20 @@ public class GestionSitios extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_sitios);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_sitios_admin);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         adapter = new ListaDeSitios(new SitioController().buscarTodos(this), this);
         recyclerView.setAdapter(adapter);
     }
-
     public void nuevoSitio(View view){
         Intent activity = new Intent(this, FormularioSitio.class);
         startActivity(activity);
     }
-
     public void bucarPorNombre(View view){
         TextView txt_nombre_sitio = findViewById(R.id.txt_search_sitio);
         String nombre = txt_nombre_sitio.getText().toString();
@@ -48,5 +50,4 @@ public class GestionSitios extends AppCompatActivity {
         adapter = new ListaDeSitios(lista, this);
         recyclerView.setAdapter(adapter);
     }
-
 }

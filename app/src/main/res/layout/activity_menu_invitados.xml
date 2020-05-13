@@ -21,6 +21,7 @@
                 android:layout_height="250dp"
                 android:layout_marginBottom="10dp"
                 android:background="@mipmap/m2"
+                android:onClick="MenuEventos"
                 android:orientation="horizontal">
 
                 <TextView
@@ -39,26 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_marginBottom="10dp"
-                android:background="@mipmap/m1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#56000000"
-                    android:gravity="center"
-                    android:text="Actividades"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="10dp"
                 android:background="@mipmap/m3"
+                android:onClick="MenuSitios"
                 android:orientation="horizontal">
 
                 <TextView
@@ -68,6 +51,26 @@
                     android:background="#56000000"
                     android:gravity="center"
                     android:text="Sitios"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="10dp"
+                android:background="@mipmap/m1"
+                android:onClick="MenuActividades"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#56000000"
+                    android:gravity="center"
+                    android:text="Actividades"
                     android:textColor="@android:color/background_light"
                     android:textSize="24sp"
                     android:textStyle="bold" />

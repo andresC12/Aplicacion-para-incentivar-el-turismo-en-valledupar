@@ -27,12 +27,26 @@ public class UsuarioController {
                 usuario.email = fila.getString(fila.getColumnIndex("email"));
                 usuario.usuario = fila.getString(fila.getColumnIndex("usuario"));
                 usuario.clave = fila.getString(fila.getColumnIndex("clave"));
+                usuario.recordar = fila.getString(fila.getColumnIndex("recordar"));
                 return usuario;
             }
         }catch (Exception e){
             return null;
         }
         return null;
+    }
+
+    public Boolean recordarOpcionLogin(Context context, String recordar){
+        try {
+            String sql = "update usuarios set recordar ='"+recordar+"'";
+            BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
+            SQLiteDatabase basededatos = bd.getWritableDatabase();
+            basededatos.execSQL(sql);
+            basededatos.close();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
 }

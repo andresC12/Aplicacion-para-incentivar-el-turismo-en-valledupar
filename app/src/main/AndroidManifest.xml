@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.proyectomovil">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -10,25 +16,52 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".ListaSitios"
+            android:label="@string/title_activity_lista_sitios"
+            android:parentActivityName=".Views.MenuInvitados"
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Mapa"
+            android:label="@string/title_activity_mapa" />
+        <activity
+            android:name=".ViewEvento"
+            android:parentActivityName=".ListaEventos"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".ListaEventos"
+            android:label="@string/title_activity_lista_eventos"
+            android:parentActivityName=".Views.MenuInvitados"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
             android:name=".Views.FormularioSitio"
             android:label="@string/title_activity_formulario_sitio"
-            android:theme="@style/NoActionBar"></activity>
+            android:parentActivityName=".Views.GestionSitios"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".Views.GestionSitios"
             android:label="@string/title_activity_gestion_sitios"
+            android:parentActivityName=".Views.MenuAdministrador"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".Views.FormularioEvento"
             android:label="@string/title_activity_formulario_evento"
+            android:parentActivityName=".Views.GestionEventos"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".Views.GestionEventos"
             android:label="@string/title_activity_gestion_eventos"
+            android:parentActivityName=".Views.MenuAdministrador"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".Views.MenuAdministrador"
             android:label="@string/title_activity_menu_administrador"
-            android:theme="@style/NoActionBar" />
+            android:parentActivityName=".Views.MenuAdministrador"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity android:name=".Views.MenuInvitados" />
         <activity android:name=".Views.MainActivity">
             <intent-filter>

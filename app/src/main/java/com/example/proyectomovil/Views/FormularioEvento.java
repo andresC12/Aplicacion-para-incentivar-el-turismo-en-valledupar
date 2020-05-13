@@ -42,6 +42,9 @@ public class FormularioEvento extends AppCompatActivity {
         setContentView(R.layout.activity_formulario_evento);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txt_nombre_evento = (TextView) findViewById(R.id.txt_nombre_evento);
         txt_descripcion_evento = (TextView) findViewById(R.id.txt_descripcion_evento);
         btn_eliminar_evento = (Button)findViewById(R.id.btn_eliminar_evento);

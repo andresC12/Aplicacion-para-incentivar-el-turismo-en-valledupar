@@ -35,7 +35,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/style_inputs"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:padding="12dp"
                 android:textColor="@android:color/background_dark"
                 android:textColorHint="#8A8282" />
@@ -57,7 +57,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/style_inputs"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:padding="12dp"
                 android:textColor="@android:color/background_dark"
                 android:textColorHint="#8A8282" />

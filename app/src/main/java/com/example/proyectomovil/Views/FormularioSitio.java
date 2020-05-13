@@ -30,6 +30,9 @@ public class FormularioSitio extends AppCompatActivity {
         setContentView(R.layout.activity_formulario_sitio);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         txt_nombre_sitio = (TextView) findViewById(R.id.txt_nombre_sitio);
         txt_descripcion_sitio = (TextView) findViewById(R.id.txt_descripcion_sitio);
