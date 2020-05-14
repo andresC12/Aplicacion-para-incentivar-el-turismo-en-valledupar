@@ -3,7 +3,7 @@ Esta aplicacion movil desarrollada en android studio, tiene como objetivo princi
 
 
 ************************************************
-Guia de instalción
+Guia de instalción del APK
 ************************************************
 
 En la gran mayoria de los casos, android tiene deshabilitada la opcion de instalar apliciones de fuentes desconocidas, las cuales son 
@@ -25,3 +25,14 @@ y en algunos casos te llevará directamente a la configuración de seguridad par
 Ten en cuenta que este panel de información muestra a qué elementos accede la aplicación tal y como fue concebida de forma original.
 Pero si yo cojo una apk y cambio su código para meterle un virus o que te espíe, esto no saldrá reflejado en el panel de información.
 Por lo tanto, todo depende de que te hayas bajado la app de un sitio fiable pero en este caso nuestra aplicacion es fiable ya que fue diseñada por nosotros mismos.
+
+***************************************************
+Guía de compilación
+***************************************************
+
+Android studio configura todos sus proyectos recientemente creados para implementarlos en android emulator o en un dispositivo configurable con unos pocos clics.
+
+Para ejecutar una aplicación en android studio debes seguir esta serie de sencillos pasos:
+1. En la barra de herramientas, selecciona la app en el menu desplegable de configuraciones de ejecución
+2. En el menú desplegable del dispositivo de destino, selecciona el dispositivo en el cual deseas compilar tu aplicaciín movíl
+3. Hacer clic en Run
