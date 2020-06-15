@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,75 +7,229 @@
     android:background="#FFFFFF"
     tools:context=".Views.MenuInvitados">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@mipmap/fondo2"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="10dp"
-                android:background="@mipmap/m2"
-                android:onClick="MenuEventos"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#56000000"
-                    android:gravity="center"
-                    android:text="Eventos"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:theme="@style/AppBarOverlay">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="10dp"
-                android:background="@mipmap/m3"
-                android:onClick="MenuSitios"
-                android:orientation="horizontal">
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="#4e73df"
+                        app:popupTheme="@style/PopupOverlay"
+                        app:title="As Tour" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#56000000"
-                    android:gravity="center"
-                    android:text="Sitios"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:onClick="MenuEventos"
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="10dp"
-                android:background="@mipmap/m1"
-                android:onClick="MenuActividades"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="Eventos"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="eventos.json"
+                        app:lottie_imageAssetsFolder="assets"
+                        app:lottie_loop="true">
+
+                    </com.airbnb.lottie.LottieAnimationView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#8BC34A"
+                    android:orientation="vertical"
+                    android:visibility="gone"></LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="#56000000"
-                    android:gravity="center"
-                    android:text="Actividades"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="actividades.json"
+                        app:lottie_imageAssetsFolder="assets"
+                        app:lottie_loop="true">
+
+                    </com.airbnb.lottie.LottieAnimationView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="Actividades"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#8BC34A"
+                    android:orientation="vertical"
+                    android:visibility="gone"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="MenuSitios"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="Sitios"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="sitios.json"
+                        app:lottie_imageAssetsFolder="assets"
+                        app:lottie_loop="true">
+
+                    </com.airbnb.lottie.LottieAnimationView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#8BC34A"
+                    android:orientation="vertical"
+                    android:visibility="gone"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@mipmap/m2"
+                    android:onClick="MenuEventos"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="87dp"
+                        android:layout_weight="1"
+                        android:background="#56000000"
+                        android:gravity="center"
+                        android:text="Eventos"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@mipmap/m3"
+                    android:onClick="MenuSitios"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#56000000"
+                        android:gravity="center"
+                        android:text="Sitios"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@mipmap/m1"
+                    android:onClick="MenuActividades"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#56000000"
+                        android:gravity="center"
+                        android:text="Actividades"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:background="@color/design_default_color_background"
+        app:itemIconTint="@drawable/style_navigation_bar_botton"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

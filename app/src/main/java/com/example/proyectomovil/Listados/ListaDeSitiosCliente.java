@@ -7,20 +7,24 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.proyectomovil.ListaSitios;
-import com.example.proyectomovil.Mapa;
+import com.example.proyectomovil.Controllers.EventoController;
+import com.example.proyectomovil.Controllers.SitioController;
+import com.example.proyectomovil.Routes.api;
+import com.example.proyectomovil.Views.ListaSitios;
+import com.example.proyectomovil.Views.Mapa;
 import com.example.proyectomovil.Models.Sitio;
 import com.example.proyectomovil.R;
-import com.example.proyectomovil.ViewEvento;
-import com.example.proyectomovil.Views.FormularioSitio;
+import com.example.proyectomovil.Views.ViewEvento;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,18 +36,25 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView nombre_sitio;
-        private ImageView btn_info, btn_map;
+        private ImageView  btn_favorito;
+        private LinearLayout btn_info;
         private Context context;
         private int posicion = 0;
         private List<Sitio> sitios = new ArrayList<>();
+        private RecyclerView recyclerImagenes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
             nombre_sitio = (TextView) itemView.findViewById(R.id.txt_nombre_sitio_info);
             nombre_sitio = (TextView) itemView.findViewById(R.id.txt_nombre_sitio_info);
-            btn_info = (ImageView) itemView.findViewById(R.id.btn_info_sitio);
-            btn_map = (ImageView) itemView.findViewById(R.id.btn_pintar_sitio);
+            btn_info = (LinearLayout) itemView.findViewById(R.id.btn_info_sitio);
+            btn_favorito = (ImageView) itemView.findViewById(R.id.btn_favorito_sitio);
+            recyclerImagenes = (RecyclerView) itemView.findViewById(R.id.recycler_imagenes_sitio);
+            LinearLayoutManager layoutManager
+                    = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+
+            recyclerImagenes.setLayoutManager(layoutManager);
 
         }
 
@@ -51,7 +62,7 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
             sitios = lista;
             posicion = position;
             btn_info.setOnClickListener(this);
-            btn_map.setOnClickListener(this);
+            btn_favorito.setOnClickListener(this);
         }
 
 
@@ -73,17 +84,24 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
 
 
                     View dialoglayout = inflater.inflate(R.layout.modal_info_sitio, null);
-
+                    ImageView img_sitio = dialoglayout.findViewById(R.id.img_modal_sitio);
                     TextView txt_nombre_sitio = dialoglayout.findViewById(R.id.label_info_nombre_sitio);
                     TextView txt_descripcion_sitio = dialoglayout.findViewById(R.id.label_info_descripcion_sitio);
-                    TextView txt_coordenadas_sitio = dialoglayout.findViewById(R.id.label_info_coordenadas_sitio);
+                    TextView txt_direccion_sitio = dialoglayout.findViewById(R.id.label_info_direccion_sitio);
+                    TextView txt_tipo_sitio = dialoglayout.findViewById(R.id.label_info_tipo_sitio);
+
 
                     txt_nombre_sitio.setText(sitios.get(posicion).nombre);
                     txt_descripcion_sitio.setText(sitios.get(posicion).descripcion);
-                    txt_coordenadas_sitio.setText(sitios.get(posicion).latitud+" , "+sitios.get(posicion).longitud);
-
+                    txt_direccion_sitio.setText(sitios.get(posicion).direccion);
+                    txt_tipo_sitio.setText(sitios.get(posicion).tipo);
+                    if(sitios.get(posicion).imagenes.size() > 0){
+                        Picasso.get()
+                                .load(api.server_imagenes_sitios+sitios.get(posicion).imagenes.get(0).url)
+                                .into(img_sitio);
+                    }
                     builder.setView(dialoglayout);
-                    builder.setPositiveButton("Ver ruta", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Trazar ruta", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Intent intent = new Intent(context, Mapa.class);
                             intent.putExtra("id_sitio", sitios.get(posicion).id_sitio);
@@ -98,10 +116,18 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
                     builder.show();
                     break;
 
-                case R.id.btn_pintar_sitio:
-                    Intent intent = new Intent(context, Mapa.class);
-                    intent.putExtra("id_sitio", sitios.get(posicion).id_sitio);
-                    context.startActivity(intent);
+                case R.id.btn_favorito_sitio:
+                    if(sitios.get(posicion).favorito.equals("1")){
+                        SitioController.quitar_favorito(context, sitios.get(posicion).id_sitio);
+                        btn_favorito.setImageDrawable(context.getResources().getDrawable(R.drawable.estrella_vacia));
+                        Toast.makeText(context, "Se quito de favoritos", Toast.LENGTH_SHORT).show();
+                        sitios.get(posicion).favorito = "0";
+                    }else{
+                        SitioController.establecer_favorito(context, sitios.get(posicion).id_sitio);
+                        btn_favorito.setImageDrawable(context.getResources().getDrawable(R.drawable.estrella_llena));
+                        Toast.makeText(context, "Se agrego a favoritos", Toast.LENGTH_SHORT).show();
+                        sitios.get(posicion).favorito = "1";
+                    }
                     break;
             }
         }
@@ -129,7 +155,14 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
     public void onBindViewHolder(@NonNull final ListaDeSitiosCliente.ViewHolder holder, int position) {
         posi = position;
         holder.nombre_sitio.setText(listaSitios.get(position).nombre);
+        ListaDeImagenesSitio adapter = new ListaDeImagenesSitio(listaSitios.get(position).imagenes,contexto);
+        holder.recyclerImagenes.setAdapter(adapter);
         holder.setOnClickListener(listaSitios, position);
+        if(listaSitios.get(position).favorito.equals("1")){
+            holder.btn_favorito.setImageDrawable(contexto.getResources().getDrawable(R.drawable.estrella_llena));
+        }else{
+            holder.btn_favorito.setImageDrawable(contexto.getResources().getDrawable(R.drawable.estrella_vacia));
+        }
     }
 
 

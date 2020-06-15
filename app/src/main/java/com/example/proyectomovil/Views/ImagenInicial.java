@@ -1,0 +1,68 @@
+package com.example.proyectomovil.Views;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.view.Gravity;
+import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+
+import com.example.proyectomovil.R;
+import com.example.proyectomovil.Views.MenuInvitados;
+
+public class ImagenInicial extends AppCompatActivity {
+
+    private Transition transicion;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_imagen_inicial);
+        View decorView = getWindow().getDecorView();
+        final Activity my_activity = this;
+
+
+
+        // Hide both the navigation bar and the status bar.
+        // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+        // a general rule, you should design your app to hide the status bar whenever you
+        // hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+        int permissionCheck = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+
+
+        new Handler().postDelayed(new Runnable() {
+
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void run() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    transicion = new Slide(Gravity.START);
+                    transicion.setDuration(10);
+                    transicion.setInterpolator(new DecelerateInterpolator());
+                    getWindow().setExitTransition(transicion);
+
+                }
+                Intent i = new Intent(getBaseContext(), MenuInvitados.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    startActivity(i, ActivityOptionsCompat.makeSceneTransitionAnimation(my_activity).toBundle());
+                }else{
+                    startActivity(i);
+                }
+                finish();
+            }
+        }, 3500);
+    }
+}

@@ -4,12 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ListaEventos"
+    tools:context=".Views.ListaEventos"
     tools:showIn="@layout/activity_lista_eventos">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_eventos_cliente"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/imagen_loading_eventos"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading.json"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_loop="true">
+
+        </com.airbnb.lottie.LottieAnimationView>
+    </LinearLayout>
+
 </RelativeLayout>

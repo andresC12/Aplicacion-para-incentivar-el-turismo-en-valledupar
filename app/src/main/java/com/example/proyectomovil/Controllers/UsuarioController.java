@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 public class UsuarioController {
 
 
-    public Usuario buscar(Context context){
+    public static Usuario buscar(Context context){
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();

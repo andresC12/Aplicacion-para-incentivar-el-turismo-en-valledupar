@@ -7,6 +7,8 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,28 +16,42 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".ListaSitios"
+            android:name=".Views.Favoritos"
+            android:label="@string/title_activity_favoritos"
+            android:parentActivityName=".Views.MenuInvitados"
+            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".Views.ImagenInicial">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Views.ListaSitios"
             android:label="@string/title_activity_lista_sitios"
             android:parentActivityName=".Views.MenuInvitados"
-            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Mapa"
+            android:name=".Views.Mapa"
             android:label="@string/title_activity_mapa" />
         <activity
-            android:name=".ViewEvento"
-            android:parentActivityName=".ListaEventos"
+            android:name=".Views.ViewEvento"
+            android:parentActivityName=".Views.ListaEventos"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
-            android:name=".ListaEventos"
+            android:name=".Views.ListaEventos"
             android:label="@string/title_activity_lista_eventos"
             android:parentActivityName=".Views.MenuInvitados"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".Views.FormularioSitio"
@@ -63,13 +79,7 @@
             android:parentActivityName=".Views.MenuAdministrador"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity android:name=".Views.MenuInvitados" />
-        <activity android:name=".Views.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Views.MainActivity"></activity>
     </application>
 
 </manifest>

@@ -89,7 +89,7 @@ public class FormularioEvento extends AppCompatActivity {
             evento.nombre = txt_nombre_evento.getText().toString();
             evento.descripcion = txt_descripcion_evento.getText().toString();
 
-            String respuesta = new EventoController().guardar(this, evento, sitios_evento);
+            String respuesta = new EventoController().guardar(this, evento);
             Toast.makeText(this, respuesta, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, GestionEventos.class);
             startActivity(intent);
