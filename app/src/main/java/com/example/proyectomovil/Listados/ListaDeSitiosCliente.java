@@ -16,14 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.proyectomovil.Controllers.EventoController;
 import com.example.proyectomovil.Controllers.SitioController;
 import com.example.proyectomovil.Routes.api;
-import com.example.proyectomovil.Views.ListaSitios;
-import com.example.proyectomovil.Views.Mapa;
+import com.example.proyectomovil.Views.Sitios.ListaSitios;
+import com.example.proyectomovil.Views.Mapa.Mapa;
 import com.example.proyectomovil.Models.Sitio;
 import com.example.proyectomovil.R;
-import com.example.proyectomovil.Views.ViewEvento;
+import com.example.proyectomovil.Views.Eventos.ViewEvento;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -17,7 +17,7 @@ import com.example.proyectomovil.Controllers.EventoController;
 import com.example.proyectomovil.Models.Evento;
 import com.example.proyectomovil.R;
 import com.example.proyectomovil.Routes.api;
-import com.example.proyectomovil.Views.ViewEvento;
+import com.example.proyectomovil.Views.Eventos.ViewEvento;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class ListaDeEventosCliente extends RecyclerView.Adapter<ListaDeEventosCl
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView nombre_evento, descripcion_evento, fecha_evento;
+        private TextView nombre_evento, descripcion_evento, fecha_evento, calificacion_evento;
         private LinearLayout layout_evento;
         private Context context;
         private int posicion = 0;
@@ -41,6 +41,7 @@ public class ListaDeEventosCliente extends RecyclerView.Adapter<ListaDeEventosCl
             context = itemView.getContext();
             nombre_evento = (TextView) itemView.findViewById(R.id.txt_nombre_evento_lista_cliente);
             fecha_evento = (TextView) itemView.findViewById(R.id.txt_lista_evento_fecha);
+            calificacion_evento = (TextView) itemView.findViewById(R.id.txt_lista_evento_calificacion);
             descripcion_evento = (TextView) itemView.findViewById(R.id.txt_descripcion_evento_lista_cliente);
             img_evento = (ImageView) itemView.findViewById(R.id.img_evento_info);
             img_favorito = (ImageView) itemView.findViewById(R.id.img_favorito);
@@ -105,6 +106,7 @@ public class ListaDeEventosCliente extends RecyclerView.Adapter<ListaDeEventosCl
         holder.nombre_evento.setText(listaeventos.get(position).nombre);
         holder.descripcion_evento.setText(listaeventos.get(position).descripcion);
         holder.fecha_evento.setText(listaeventos.get(position).fecha_inicio);
+        holder.calificacion_evento.setText(listaeventos.get(position).calificacion);
 
         Picasso.get()
                 .load(api.server_imagenes_eventos+listaeventos.get(position).imagen)

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.proyectomovil.Controllers.EventoController;
-import com.example.proyectomovil.Views.ListaEventos;
+import com.example.proyectomovil.Views.Eventos.ListaEventos;
 import com.example.proyectomovil.Listados.ListaDeEventosCliente;
 import com.example.proyectomovil.Models.Evento;
 import com.example.proyectomovil.Models.Imagenes;
@@ -100,6 +100,7 @@ public class ApiEventos extends AsyncTask<Void, Void, String> {
                     evento.imagen = r.getString("imagen");
                     evento.fecha_inicio = r.getString("fecha_inicio");
                     evento.fecha_fin = r.getString("fecha_fin");
+                    evento.calificacion = r.getString("calificacion");
                     JSONArray sitios_json = r.optJSONArray("sitios");
                     for (int j=0; j<sitios_json.length();j++){
                         JSONObject s = sitios_json.getJSONObject(j);
@@ -111,6 +112,7 @@ public class ApiEventos extends AsyncTask<Void, Void, String> {
                         sitio.direccion = s.getString("direccion");
                         sitio.latitud = Double.parseDouble(s.getString("latitud"));
                         sitio.longitud = Double.parseDouble(s.getString("longitud"));
+                        sitio.calificacion = s.getString("calificacion");
                         JSONArray imagenes_json = s.optJSONArray("imagenes");
                         for (int k=0; k<imagenes_json.length();k++){
                             JSONObject im = imagenes_json.getJSONObject(k);

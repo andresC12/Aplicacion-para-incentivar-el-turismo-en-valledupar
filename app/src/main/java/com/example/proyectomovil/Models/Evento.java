@@ -11,5 +11,6 @@ public class Evento {
     public String fecha_inicio;
     public String fecha_fin;
     public String favorito;
+    public String calificacion;
     public List<Sitio> sitios = new ArrayList<>();
 }

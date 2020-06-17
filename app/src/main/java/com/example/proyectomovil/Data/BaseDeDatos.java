@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class BaseDeDatos extends SQLiteOpenHelper {
 
 
-    public static String nombreBD = "BDV8";
+    public static String nombreBD = "BDV12";
     public BaseDeDatos(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -27,11 +27,13 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.execSQL("create table actividades(" +
                 "id_actividad integer," +
                 "nombre text," +
-                "favorito text," +
+                "imagen text," +
                 "fecha text," +
+                "favorito text," +
+                "calificacion text," +
                 "descripcion text)");
 
-        db.execSQL("create table actividades_favoritos(" +
+        db.execSQL("create table actividades_favoritas(" +
                 "id_actividad_favorita integer PRIMARY KEY autoincrement," +
                 "id_actividad integer)");
 
@@ -42,6 +44,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
                 "fecha_inicio text," +
                 "fecha_fin text," +
                 "favorito text," +
+                "calificacion text," +
                 "descripcion text)");
 
         db.execSQL("create table eventos_favoritos(" +
@@ -52,6 +55,7 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         db.execSQL("create table sitios(" +
                 "id_sitio integer," +
                 "nombre text," +
+                "calificacion text," +
                 "descripcion text," +
                 "direccion text," +
                 "tipo text," +
@@ -77,6 +81,12 @@ public class BaseDeDatos extends SQLiteOpenHelper {
                 "id_sitio_actividad integer PRIMARY KEY autoincrement," +
                 "id_sitio integer," +
                 "id_actividad integer)");
+
+        db.execSQL("create table calificaciones(" +
+                "id_calificacion integer PRIMARY KEY autoincrement," +
+                "id_accion integer," +
+                "calificacion integer," +
+                "tipo_accion text)");
 
     }
 

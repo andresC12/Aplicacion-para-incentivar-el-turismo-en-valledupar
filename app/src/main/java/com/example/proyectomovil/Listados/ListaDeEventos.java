@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectomovil.Models.Evento;
 import com.example.proyectomovil.R;
-import com.example.proyectomovil.Views.FormularioEvento;
+import com.example.proyectomovil.Views.Eventos.FormularioEvento;
 
 import java.util.ArrayList;
 import java.util.List;

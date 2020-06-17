@@ -11,5 +11,6 @@ public class Sitio {
     public double latitud;
     public double longitud;
     public String favorito;
+    public String calificacion;
     public ArrayList<Imagenes> imagenes = new ArrayList<>();
 }

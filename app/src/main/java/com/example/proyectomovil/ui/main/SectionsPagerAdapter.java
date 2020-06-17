@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.proyectomovil.ActividadesFavoritas;
-import com.example.proyectomovil.EventosFavoritos;
+import com.example.proyectomovil.Views.Actividades.ActividadesFavoritas;
+import com.example.proyectomovil.Views.Eventos.EventosFavoritos;
 import com.example.proyectomovil.R;
-import com.example.proyectomovil.SitiosFavoritos;
+import com.example.proyectomovil.Views.Sitios.SitiosFavoritos;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

@@ -11,16 +11,14 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectomovil.Models.Sitio;
 import com.example.proyectomovil.R;
-import com.example.proyectomovil.Views.FormularioSitio;
+import com.example.proyectomovil.Views.Sitios.FormularioSitio;
 
 public class ListaDeSitios extends RecyclerView.Adapter<ListaDeSitios.ViewHolder>{
 

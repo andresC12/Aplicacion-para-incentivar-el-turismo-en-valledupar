@@ -19,11 +19,24 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Views.Favoritos"
+            android:name=".Views.Calificacion"
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+        <activity
+            android:name=".Views.Actividades.ViewActividad"
+            android:label="@string/title_activity_view_actividad"
+            android:parentActivityName=".Views.Actividades.ListaActividades"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".Views.Actividades.ListaActividades"
+            android:label="@string/title_activity_lista_actividades"
+            android:parentActivityName=".Views.Menus.MenuInvitados"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".Views.Inicio.Favoritos"
             android:label="@string/title_activity_favoritos"
-            android:parentActivityName=".Views.MenuInvitados"
-            android:theme="@style/NoActionBar"></activity>
-        <activity android:name=".Views.ImagenInicial">
+            android:parentActivityName=".Views.Menus.MenuInvitados"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".Views.Inicio.ImagenInicial">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,9 +44,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Views.ListaSitios"
+            android:name=".Views.Sitios.ListaSitios"
             android:label="@string/title_activity_lista_sitios"
-            android:parentActivityName=".Views.MenuInvitados"
+            android:parentActivityName=".Views.Menus.MenuInvitados"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
 
         <meta-data
@@ -41,45 +54,45 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Views.Mapa"
+            android:name=".Views.Mapa.Mapa"
             android:label="@string/title_activity_mapa" />
         <activity
-            android:name=".Views.ViewEvento"
-            android:parentActivityName=".Views.ListaEventos"
+            android:name=".Views.Eventos.ViewEvento"
+            android:parentActivityName=".Views.Eventos.ListaEventos"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
-            android:name=".Views.ListaEventos"
+            android:name=".Views.Eventos.ListaEventos"
             android:label="@string/title_activity_lista_eventos"
-            android:parentActivityName=".Views.MenuInvitados"
+            android:parentActivityName=".Views.Menus.MenuInvitados"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
-            android:name=".Views.FormularioSitio"
+            android:name=".Views.Sitios.FormularioSitio"
             android:label="@string/title_activity_formulario_sitio"
-            android:parentActivityName=".Views.GestionSitios"
+            android:parentActivityName=".Views.Sitios.GestionSitios"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".Views.GestionSitios"
+            android:name=".Views.Sitios.GestionSitios"
             android:label="@string/title_activity_gestion_sitios"
-            android:parentActivityName=".Views.MenuAdministrador"
+            android:parentActivityName=".Views.Menus.MenuAdministrador"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".Views.FormularioEvento"
+            android:name=".Views.Eventos.FormularioEvento"
             android:label="@string/title_activity_formulario_evento"
-            android:parentActivityName=".Views.GestionEventos"
+            android:parentActivityName=".Views.Eventos.GestionEventos"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
-            android:name=".Views.GestionEventos"
+            android:name=".Views.Eventos.GestionEventos"
             android:label="@string/title_activity_gestion_eventos"
-            android:parentActivityName=".Views.MenuAdministrador"
+            android:parentActivityName=".Views.Menus.MenuAdministrador"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".Views.MenuAdministrador"
+            android:name=".Views.Menus.MenuAdministrador"
             android:label="@string/title_activity_menu_administrador"
-            android:parentActivityName=".Views.MenuAdministrador"
+            android:parentActivityName=".Views.Menus.MenuAdministrador"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
-        <activity android:name=".Views.MenuInvitados" />
-        <activity android:name=".Views.MainActivity"></activity>
+        <activity android:name=".Views.Menus.MenuInvitados" />
+        <activity android:name=".Views.Inicio.MainActivity" />
     </application>
 
 </manifest>

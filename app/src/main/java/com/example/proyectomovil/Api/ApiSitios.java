@@ -5,16 +5,12 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.proyectomovil.Controllers.EventoController;
 import com.example.proyectomovil.Controllers.SitioController;
-import com.example.proyectomovil.Listados.ListaDeEventosCliente;
 import com.example.proyectomovil.Listados.ListaDeSitiosCliente;
-import com.example.proyectomovil.Models.Evento;
 import com.example.proyectomovil.Models.Imagenes;
 import com.example.proyectomovil.Models.Sitio;
 import com.example.proyectomovil.Routes.api;
-import com.example.proyectomovil.Views.ListaEventos;
-import com.example.proyectomovil.Views.ListaSitios;
+import com.example.proyectomovil.Views.Sitios.ListaSitios;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -104,6 +100,7 @@ public class ApiSitios  extends AsyncTask<Void, Void, String> {
                         sitio.tipo = s.getString("tipo");
                         sitio.latitud = Double.parseDouble(s.getString("latitud"));
                         sitio.longitud = Double.parseDouble(s.getString("longitud"));
+                        sitio.calificacion = s.getString("calificacion");
                         JSONArray imagenes_json = s.optJSONArray("imagenes");
                         for (int k=0; k<imagenes_json.length();k++){
                             JSONObject im = imagenes_json.getJSONObject(k);

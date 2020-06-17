@@ -9,5 +9,7 @@ public class Actividad {
     public String descripcion;
     public String imagen;
     public String fecha;
+    public String favorito;
+    public String calificacion;
     public List<Sitio> sitios = new ArrayList<>();
 }

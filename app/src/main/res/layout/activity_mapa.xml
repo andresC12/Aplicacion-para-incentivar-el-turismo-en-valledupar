@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.Mapa">
+    tools:context=".Views.Mapa.Mapa">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
-        tools:context=".Views.Mapa"
+        tools:context=".Views.Mapa.Mapa"
         tools:layout_editor_absoluteY="56dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -27,6 +27,7 @@ public class SitioController {
             registro.put("tipo",sitio.tipo);
             registro.put("latitud",sitio.latitud);
             registro.put("longitud", sitio.longitud);
+            registro.put("calificacion", sitio.calificacion);
             Cursor es_favorito = basededatos.rawQuery("select * from sitios_favoritos where id_sitio = "+sitio.id_sitio, null);
             if(es_favorito.moveToFirst()){
                 registro.put("favorito","1");
@@ -61,6 +62,7 @@ public class SitioController {
             registro.put("tipo",sitio.tipo);
             registro.put("latitud",sitio.latitud);
             registro.put("longitud", sitio.longitud);
+            registro.put("calificacion", sitio.calificacion);
             Cursor es_favorito = basededatos.rawQuery("select * from sitios_favoritos where id_sitio = "+sitio.id_sitio, null);
             if(es_favorito.moveToFirst()){
                 registro.put("favorito","1");
@@ -117,7 +119,7 @@ public class SitioController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from sitios", null);
+            Cursor fila = basededatos.rawQuery("select * from sitios order by calificacion", null);
 
                 while(fila.moveToNext()) {
                     Sitio sitio = new Sitio();
@@ -129,6 +131,7 @@ public class SitioController {
                     sitio.latitud = fila.getDouble(fila.getColumnIndex("latitud"));
                     sitio.longitud = fila.getDouble(fila.getColumnIndex("longitud"));
                     sitio.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                    sitio.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
 
                     Cursor fila2 = basededatos.rawQuery("select * from imagen_sitio where id_sitio = "+sitio.id_sitio, null);
 
@@ -151,7 +154,7 @@ public class SitioController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from sitios where favorito = '1'", null);
+            Cursor fila = basededatos.rawQuery("select * from sitios where favorito = '1' order by calificacion", null);
 
             while(fila.moveToNext()) {
                 Sitio sitio = new Sitio();
@@ -163,6 +166,7 @@ public class SitioController {
                 sitio.latitud = fila.getDouble(fila.getColumnIndex("latitud"));
                 sitio.longitud = fila.getDouble(fila.getColumnIndex("longitud"));
                 sitio.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                sitio.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
 
                 Cursor fila2 = basededatos.rawQuery("select * from imagen_sitio where id_sitio = "+sitio.id_sitio, null);
 
@@ -185,7 +189,7 @@ public class SitioController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from sitios where nombre like '%"+nombre+"%'", null);
+            Cursor fila = basededatos.rawQuery("select * from sitios where nombre like '%"+nombre+"%' order by calificacion", null);
             if (fila.moveToFirst()) {
                 Sitio sitio = new Sitio();
                 sitio.id_sitio = fila.getInt(fila.getColumnIndex("id_sitio"));
@@ -196,6 +200,7 @@ public class SitioController {
                 sitio.latitud = fila.getDouble(fila.getColumnIndex("latitud"));
                 sitio.longitud = fila.getDouble(fila.getColumnIndex("longitud"));
                 sitio.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                sitio.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
                 Cursor fila2 = basededatos.rawQuery("select * from imagen_sitio where id_sitio = "+sitio.id_sitio, null);
 
                 while(fila2.moveToNext()) {
@@ -256,6 +261,7 @@ public class SitioController {
                 sitio.latitud = fila.getDouble(fila.getColumnIndex("latitud"));
                 sitio.longitud = fila.getDouble(fila.getColumnIndex("longitud"));
                 sitio.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                sitio.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
                 Cursor fila2 = basededatos.rawQuery("select * from imagen_sitio where id_sitio = "+sitio.id_sitio, null);
 
                 while(fila2.moveToNext()) {

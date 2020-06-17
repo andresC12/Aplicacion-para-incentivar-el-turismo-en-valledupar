@@ -25,6 +25,7 @@ public class EventoController {
             registro.put("imagen",evento.imagen);
             registro.put("fecha_inicio",evento.fecha_inicio);
             registro.put("fecha_fin",evento.fecha_fin);
+            registro.put("calificacion",evento.calificacion);
             Cursor es_favorito = basededatos.rawQuery("select * from eventos_favoritos where id_evento = "+evento.id_evento, null);
             if(es_favorito.moveToFirst()){
                 registro.put("favorito","1");
@@ -146,7 +147,7 @@ public class EventoController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from eventos", null);
+            Cursor fila = basededatos.rawQuery("select * from eventos order by calificacion desc", null);
 
             while(fila.moveToNext()) {
                 Evento evento = new Evento();
@@ -157,6 +158,7 @@ public class EventoController {
                 evento.fecha_inicio = fila.getString(fila.getColumnIndex("fecha_inicio"));
                 evento.fecha_fin = fila.getString(fila.getColumnIndex("fecha_fin"));
                 evento.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                evento.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
 
 
                 Cursor fila_sitios = basededatos.rawQuery("select * from sitios_eventos where id_evento = "+evento.id_evento, null);
@@ -179,7 +181,7 @@ public class EventoController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from eventos where favorito = '1'", null);
+            Cursor fila = basededatos.rawQuery("select * from eventos where favorito = '1' order by calificacion desc", null);
 
             while(fila.moveToNext()) {
                 Evento evento = new Evento();
@@ -190,6 +192,7 @@ public class EventoController {
                 evento.fecha_inicio = fila.getString(fila.getColumnIndex("fecha_inicio"));
                 evento.fecha_fin = fila.getString(fila.getColumnIndex("fecha_fin"));
                 evento.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                evento.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
 
 
                 Cursor fila_sitios = basededatos.rawQuery("select * from sitios_eventos where id_evento = "+evento.id_evento, null);
@@ -213,7 +216,7 @@ public class EventoController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from eventos where nombre like '%"+nombre+"%'", null);
+            Cursor fila = basededatos.rawQuery("select * from eventos where nombre like '%"+nombre+"%' order by calificacion desc", null);
 
             while(fila.moveToNext()) {
                 Evento evento = new Evento();
@@ -224,6 +227,7 @@ public class EventoController {
                 evento.fecha_inicio = fila.getString(fila.getColumnIndex("fecha_inicio"));
                 evento.fecha_fin = fila.getString(fila.getColumnIndex("fecha_fin"));
                 evento.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                evento.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
 
                 lista.add(evento);
 
@@ -255,6 +259,7 @@ public class EventoController {
                 evento.fecha_inicio = fila.getString(fila.getColumnIndex("fecha_inicio"));
                 evento.fecha_fin = fila.getString(fila.getColumnIndex("fecha_fin"));
                 evento.favorito = fila.getString(fila.getColumnIndex("favorito"));
+                evento.calificacion = fila.getString(fila.getColumnIndex("calificacion"));
                 Cursor fila_sitios = basededatos.rawQuery("select * from sitios_eventos where id_evento = "+evento.id_evento, null);
                 while(fila_sitios.moveToNext()) {
                     int id_sitio = fila_sitios.getInt(fila_sitios.getColumnIndex("id_sitio"));
