@@ -19,13 +19,22 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Views.Calificacion"
+            android:name=".Views.ResultadoBusqueda"
+            android:label="@string/title_activity_resultado_busqueda"
+            android:parentActivityName=".Views.Busqueda"
             android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+        <activity
+            android:name=".Views.Busqueda"
+            android:parentActivityName=".Views.Menus.MenuInvitados"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".Views.Calificacion"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".Views.Actividades.ViewActividad"
             android:label="@string/title_activity_view_actividad"
             android:parentActivityName=".Views.Actividades.ListaActividades"
-            android:theme="@style/NoActionBar" />
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".Views.Actividades.ListaActividades"
             android:label="@string/title_activity_lista_actividades"

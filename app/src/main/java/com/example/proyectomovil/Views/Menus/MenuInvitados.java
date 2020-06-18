@@ -17,6 +17,7 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.example.proyectomovil.R;
 import com.example.proyectomovil.Views.Actividades.ListaActividades;
+import com.example.proyectomovil.Views.Busqueda;
 import com.example.proyectomovil.Views.Eventos.ListaEventos;
 import com.example.proyectomovil.Views.Inicio.Favoritos;
 import com.example.proyectomovil.Views.Sitios.ListaSitios;
@@ -49,6 +50,15 @@ public class MenuInvitados extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Favoritos.class);
+                startActivity(intent);
+            }
+        });
+
+        View buscar_item = findViewById(R.id.navigation_buscar);
+        buscar_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Busqueda.class);
                 startActivity(intent);
             }
         });

@@ -38,6 +38,7 @@ public class ViewActividad extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activity_viewActividad = this;
+
         TextView txt_nombre_actividad = findViewById(R.id.txt_nombre_actividad_info);
         TextView txt_descripcion_actividad = findViewById(R.id.txt_descripcion_actividad_info);
         TextView txt_fecha_actividad = findViewById(R.id.txt_fecha_actividad_info);

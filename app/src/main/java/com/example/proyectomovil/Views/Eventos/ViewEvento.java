@@ -1,6 +1,7 @@
 package com.example.proyectomovil.Views.Eventos;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.proyectomovil.Controllers.EventoController;
@@ -11,6 +12,7 @@ import com.example.proyectomovil.Listados.ListaDeSitiosCliente;
 import com.example.proyectomovil.Models.Evento;
 import com.example.proyectomovil.R;
 import com.example.proyectomovil.Routes.api;
+import com.example.proyectomovil.Views.Calificacion;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
@@ -45,7 +47,16 @@ public class ViewEvento extends AppCompatActivity {
         TextView txt_descripcion_evento = findViewById(R.id.txt_descripcion_evento_info);
         TextView txt_fecha_evento = findViewById(R.id.txt_fecha_evento_info);
         ImageView img_evento = findViewById(R.id.img_evento_info);
-
+        FloatingActionButton fab = findViewById(R.id.fab2);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Calificacion.class);
+                intent.putExtra("id_accion", evento.id_evento);
+                intent.putExtra("accion", "evento");
+                startActivity(intent);
+            }
+        });
 
         int id_evento = getIntent().getIntExtra("id_evento", 0);
         if (id_evento != 0){

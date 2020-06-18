@@ -2,6 +2,7 @@ package com.example.proyectomovil.Api;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import com.example.proyectomovil.Listados.ListaDeSitiosCliente;
 import com.example.proyectomovil.Models.Imagenes;
 import com.example.proyectomovil.Models.Sitio;
 import com.example.proyectomovil.Routes.api;
+import com.example.proyectomovil.Views.Calificacion;
 import com.example.proyectomovil.Views.Sitios.ListaSitios;
 
 import org.json.JSONArray;
@@ -27,6 +29,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.Iterator;
 import java.util.List;
 
 public class ApiActualizarCalificacion  extends AsyncTask<Void, Void, String> {
@@ -73,7 +77,7 @@ public class ApiActualizarCalificacion  extends AsyncTask<Void, Void, String> {
 
             OutputStream os = urlConnection.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-            writer.write(data_post.toString());
+            writer.write(getPostDataString(data_post));
             writer.flush();
             writer.close();
             os.close();
@@ -93,9 +97,9 @@ public class ApiActualizarCalificacion  extends AsyncTask<Void, Void, String> {
                 JSONObject jo = null;
                 jo = new JSONObject(json);
 
-                String respuesta = jo.getString("mensaje");
+                String error = jo.getString("error");
 
-                return "1";
+                return error;
             }
 
             return "Error. Por favor comuniquese con un asesor ";
@@ -116,15 +120,45 @@ public class ApiActualizarCalificacion  extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String resultadoapi) {
         super.onPostExecute(resultadoapi);
-        //progressDialog.dismiss();
-        Toast.makeText(httpContext, resultadoapi, Toast.LENGTH_SHORT).show();
-        /*
-        if(CalificacionController.actualizarCalificacion(httpContext,accion,id_accion,calificacion_nueva)){
-            Toast.makeText(httpContext, "Se guardo correctamente tu calificacion", Toast.LENGTH_LONG).show();
+        dialog.dismiss();
+
+        if(resultadoapi.equals("0")) {
+            if (CalificacionController.actualizarCalificacion(httpContext, accion, id_accion, calificacion_nueva)) {
+                Toast.makeText(httpContext, "Se guardo correctamente tu calificacion", Toast.LENGTH_LONG).show();
+                Calificacion.activity_calificaciones.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Calificacion.activity_calificaciones.onBackPressed();
+                    }
+                });
+            } else {
+                Toast.makeText(httpContext, "No se pudo guardar calificacion", Toast.LENGTH_LONG).show();
+            }
         }else{
-            Toast.makeText(httpContext, "no se pudo guardar calificacion", Toast.LENGTH_LONG).show();
+            Toast.makeText(httpContext, "Ocurrio un error al guardar la calificacion", Toast.LENGTH_LONG).show();
         }
 
-         */
+    }
+
+    public String getPostDataString(JSONObject params) throws Exception {
+
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        Iterator<String> itr = params.keys();
+        while(itr.hasNext()){
+
+            String key= itr.next();
+            Object value = params.get(key);
+
+            if (first)
+                first = false;
+            else
+                result.append("&");
+
+            result.append(URLEncoder.encode(key, "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
+        }
+        return result.toString();
     }
 }

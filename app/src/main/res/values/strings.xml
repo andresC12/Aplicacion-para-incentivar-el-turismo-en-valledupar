@@ -19,4 +19,11 @@
     <string name="title_activity_lista_actividades">ListaActividades</string>
     <string name="title_activity_view_actividad">ViewActividad</string>
     <string name="title_activity_calificacion">Calificacion</string>
+    <string-array name="tipos_busqueda">
+        <item>Sitios</item>
+        <item>Eventos</item>
+        <item>Actividades</item>
+
+    </string-array>
+    <string name="title_activity_resultado_busqueda">ResultadoBusqueda</string>
 </resources>

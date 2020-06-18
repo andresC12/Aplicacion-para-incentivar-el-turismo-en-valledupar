@@ -1,10 +1,13 @@
 package com.example.proyectomovil.Views;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.proyectomovil.Api.ApiActualizarCalificacion;
 import com.example.proyectomovil.Controllers.ActividadController;
 import com.example.proyectomovil.Controllers.CalificacionController;
+import com.example.proyectomovil.Controllers.EventoController;
+import com.example.proyectomovil.Controllers.SitioController;
 import com.example.proyectomovil.Models.Actividad;
 import com.example.proyectomovil.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Calificacion extends AppCompatActivity {
@@ -24,6 +28,7 @@ public class Calificacion extends AppCompatActivity {
     public int calificacion_anterior;
     public String tipo_accion;
     public int id_accion;
+    public static Activity activity_calificaciones;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +40,7 @@ public class Calificacion extends AppCompatActivity {
         btn_estrella_3 = findViewById(R.id.btn_calificacion_3);
         btn_estrella_4 = findViewById(R.id.btn_calificacion_4);
         btn_estrella_5 = findViewById(R.id.btn_calificacion_5);
-
+        activity_calificaciones = this;
         btn_estrella_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,17 +71,27 @@ public class Calificacion extends AppCompatActivity {
                 pintar_estrellas_calificacion(5);
             }
         });
+        TextView txt_nombre_accion_caificacion = findViewById(R.id.txt_nombre_accion_caificacion);
         tipo_accion = getIntent().getStringExtra("accion");
+
         id_accion = getIntent().getIntExtra("id_accion",0);
         switch (tipo_accion){
             case "actividad":
                 toolbar.setTitle("Calificacion de actividad");
                 calificacion_anterior = CalificacionController.obtenerCalificacion(this,"actividad", id_accion);
                 pintar_estrellas_calificacion(calificacion_anterior);
+                txt_nombre_accion_caificacion.setText(ActividadController.buscar(this, id_accion).nombre);
                 break;
             case "evento":
                 toolbar.setTitle("Calificacion de evento");
-                calificacion_anterior = CalificacionController.obtenerCalificacion(this,"actividad", id_accion);
+                calificacion_anterior = CalificacionController.obtenerCalificacion(this,"evento", id_accion);
+                txt_nombre_accion_caificacion.setText(new EventoController().buscar(this, id_accion).nombre);
+                pintar_estrellas_calificacion(calificacion_anterior);
+                break;
+            case "sitio":
+                toolbar.setTitle("Calificacion de sitio");
+                calificacion_anterior = CalificacionController.obtenerCalificacion(this,"sitio", id_accion);
+                txt_nombre_accion_caificacion.setText(new SitioController().buscar(this, id_accion).nombre);
                 pintar_estrellas_calificacion(calificacion_anterior);
                 break;
         }
@@ -134,7 +149,6 @@ public class Calificacion extends AppCompatActivity {
     public void guardarCalificacion(View view){
         ApiActualizarCalificacion api_peticion = new ApiActualizarCalificacion(this,tipo_accion, id_accion, calificacion, calificacion_anterior);
         api_peticion.execute();
-
     }
 
 }

@@ -1,8 +1,10 @@
 package com.example.proyectomovil.Views.Inicio;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.proyectomovil.R;
+import com.example.proyectomovil.Views.Busqueda;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -38,8 +40,8 @@ public class Favoritos extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), Busqueda.class);
+                startActivity(intent);
             }
         });
     }

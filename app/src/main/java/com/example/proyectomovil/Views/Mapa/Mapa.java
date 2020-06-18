@@ -145,6 +145,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 nombre_sitio.setText(info);
                 ImageView imagen_sitio = modal_info.findViewById(R.id.info_mapa_imagen);
                 if(info.equals("Aqui estoy yo") == false){
+                    imagen_sitio.setVisibility(View.VISIBLE);
                     Sitio sitio = new SitioController().buscarTodosPorNombre(context, info).get(0);
                     if(sitio != null) {
                         if(sitio.imagenes.get(0) != null){
@@ -152,8 +153,9 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                                     .load(api.server_imagenes_sitios + sitio.imagenes.get(0).url)
                                     .into(imagen_sitio);
                         }
-
                     }
+                }else{
+                    imagen_sitio.setVisibility(View.GONE);
                 }
                     return modal_info;
             }

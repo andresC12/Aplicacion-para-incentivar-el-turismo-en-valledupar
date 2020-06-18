@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.ArrayAdapter;
 
 import com.example.proyectomovil.Data.BaseDeDatos;
 import com.example.proyectomovil.Models.Imagenes;
@@ -24,7 +25,7 @@ public class SitioController {
             registro.put("nombre", sitio.nombre);
             registro.put("descripcion",sitio.descripcion);
             registro.put("direccion",sitio.direccion);
-            registro.put("tipo",sitio.tipo);
+            registro.put("tipo",sitio.tipo.toUpperCase());
             registro.put("latitud",sitio.latitud);
             registro.put("longitud", sitio.longitud);
             registro.put("calificacion", sitio.calificacion);
@@ -59,7 +60,7 @@ public class SitioController {
             registro.put("nombre", sitio.nombre);
             registro.put("descripcion",sitio.descripcion);
             registro.put("direccion",sitio.direccion);
-            registro.put("tipo",sitio.tipo);
+            registro.put("tipo",sitio.tipo.toUpperCase());
             registro.put("latitud",sitio.latitud);
             registro.put("longitud", sitio.longitud);
             registro.put("calificacion", sitio.calificacion);
@@ -114,12 +115,12 @@ public class SitioController {
 
 
 
-    public List<Sitio> buscarTodos(Context context){
+    public static List<Sitio> buscarTodos(Context context){
         List<Sitio> lista = new ArrayList<>();
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from sitios order by calificacion", null);
+            Cursor fila = basededatos.rawQuery("select * from sitios order by calificacion desc", null);
 
                 while(fila.moveToNext()) {
                     Sitio sitio = new Sitio();
@@ -154,7 +155,7 @@ public class SitioController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from sitios where favorito = '1' order by calificacion", null);
+            Cursor fila = basededatos.rawQuery("select * from sitios where favorito = '1' order by calificacion desc", null);
 
             while(fila.moveToNext()) {
                 Sitio sitio = new Sitio();
@@ -189,7 +190,7 @@ public class SitioController {
         try {
             BaseDeDatos bd = new BaseDeDatos(context, BaseDeDatos.nombreBD, null, 1);
             SQLiteDatabase basededatos = bd.getWritableDatabase();
-            Cursor fila = basededatos.rawQuery("select * from sitios where nombre like '%"+nombre+"%' order by calificacion", null);
+            Cursor fila = basededatos.rawQuery("select * from sitios where nombre like '%"+nombre+"%' order by calificacion desc", null);
             if (fila.moveToFirst()) {
                 Sitio sitio = new Sitio();
                 sitio.id_sitio = fila.getInt(fila.getColumnIndex("id_sitio"));
@@ -275,5 +276,18 @@ public class SitioController {
             return null;
         }
         return null;
+    }
+
+    public static ArrayList<String> obtenerTipos(Context context){
+        List<Sitio> lista = buscarTodos(context);
+        ArrayList<String> lista_final = new ArrayList<>();
+        lista_final.add("TODOS");
+        for(Sitio sitio: lista){
+            String tipo = sitio.tipo.toUpperCase().trim();
+            if(!lista_final.contains(tipo)){
+                lista_final.add(tipo);
+            }
+        }
+        return  lista_final;
     }
 }

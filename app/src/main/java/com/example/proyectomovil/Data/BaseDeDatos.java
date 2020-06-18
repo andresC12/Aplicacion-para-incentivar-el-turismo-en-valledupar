@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class BaseDeDatos extends SQLiteOpenHelper {
 
 
-    public static String nombreBD = "BDV12";
+    public static String nombreBD = "BDV13";
     public BaseDeDatos(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -87,6 +87,8 @@ public class BaseDeDatos extends SQLiteOpenHelper {
                 "id_accion integer," +
                 "calificacion integer," +
                 "tipo_accion text)");
+
+
 
     }
 

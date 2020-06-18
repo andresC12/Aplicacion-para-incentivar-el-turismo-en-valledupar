@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectomovil.Controllers.SitioController;
 import com.example.proyectomovil.Routes.api;
+import com.example.proyectomovil.Views.Calificacion;
+import com.example.proyectomovil.Views.ResultadoBusqueda;
 import com.example.proyectomovil.Views.Sitios.ListaSitios;
 import com.example.proyectomovil.Views.Mapa.Mapa;
 import com.example.proyectomovil.Models.Sitio;
@@ -34,7 +36,7 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView nombre_sitio;
+        private TextView nombre_sitio, calificacion_sitio;
         private ImageView  btn_favorito;
         private LinearLayout btn_info;
         private Context context;
@@ -46,7 +48,7 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
             super(itemView);
             context = itemView.getContext();
             nombre_sitio = (TextView) itemView.findViewById(R.id.txt_nombre_sitio_info);
-            nombre_sitio = (TextView) itemView.findViewById(R.id.txt_nombre_sitio_info);
+            calificacion_sitio = (TextView) itemView.findViewById(R.id.txt_calificacion_sitio_info);
             btn_info = (LinearLayout) itemView.findViewById(R.id.btn_info_sitio);
             btn_favorito = (ImageView) itemView.findViewById(R.id.btn_favorito_sitio);
             recyclerImagenes = (RecyclerView) itemView.findViewById(R.id.recycler_imagenes_sitio);
@@ -80,6 +82,9 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
                     if(ListaSitios.activity_sitios != null){
                          inflater = ListaSitios.activity_sitios.getLayoutInflater();
                     }
+                    if(ResultadoBusqueda.activity_busqueda != null){
+                        inflater = ResultadoBusqueda.activity_busqueda.getLayoutInflater();
+                    }
 
 
                     View dialoglayout = inflater.inflate(R.layout.modal_info_sitio, null);
@@ -106,9 +111,12 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
                             intent.putExtra("id_sitio", sitios.get(posicion).id_sitio);
                             context.startActivity(intent);
                         }
-                    }).setNegativeButton("Cerrar", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton("Calificar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
+                            Intent intent = new Intent(context, Calificacion.class);
+                            intent.putExtra("id_accion", sitios.get(posicion).id_sitio);
+                            intent.putExtra("accion", "sitio");
+                            context.startActivity(intent);
                         }
                     });
                     builder.create();
@@ -127,7 +135,7 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
                         Toast.makeText(context, "Se agrego a favoritos", Toast.LENGTH_SHORT).show();
                         sitios.get(posicion).favorito = "1";
                     }
-                    break;
+                 break;
             }
         }
 
@@ -157,6 +165,7 @@ public class ListaDeSitiosCliente  extends RecyclerView.Adapter<ListaDeSitiosCli
         ListaDeImagenesSitio adapter = new ListaDeImagenesSitio(listaSitios.get(position).imagenes,contexto);
         holder.recyclerImagenes.setAdapter(adapter);
         holder.setOnClickListener(listaSitios, position);
+        holder.calificacion_sitio.setText(listaSitios.get(position).calificacion);
         if(listaSitios.get(position).favorito.equals("1")){
             holder.btn_favorito.setImageDrawable(contexto.getResources().getDrawable(R.drawable.estrella_llena));
         }else{
